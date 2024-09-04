@@ -22,7 +22,7 @@ class GoalMap:
         self.xG_per_shot = self.total_xG / self.total_shots
         self.points_average_distance = self.df["X"].mean()
         self.actual_average_distance = 120 - (self.df["X"] * 1.2).mean()
-        self.background_color = "#1a1a1a"
+        self.background_color = "#0f1116"
         self.goal_colour = "#3d7ed9"
         self.font_path = "Arvo-Regular.ttf"
 
