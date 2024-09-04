@@ -337,7 +337,8 @@ class GoalMap:
 def main():
     # Haaland: 8260, Salah: 1250 max 13053
     st.title("Player Shot Map")
-    
+    st.write("By Aiden Lyons")
+    st.write("Enter the player's name and season to generate the shot map.")
     player_input = st.text_input("Enter the player's name")
     season_input = st.text_input("Enter the season")
     id = getID(player_input)
