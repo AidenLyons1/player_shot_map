@@ -327,6 +327,7 @@ class GoalMap:
         file_name = f"{(self.player).replace(" ", "_")}_{self.season}.png"
         fig.savefig(
             file_name,
+            dpi=300,
             facecolor=self.background_color,
             bbox_inches="tight",
         )
