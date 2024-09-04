@@ -1,0 +1,9 @@
+pandas
+matplotlib.pyplot
+mplsoccer
+matplotlib.font_manager
+json
+requests
+bs4
+streamlit
+os
