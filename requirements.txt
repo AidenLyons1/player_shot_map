@@ -1,7 +1,6 @@
 pandas
-matplotlib.pyplot
+matplotlib
 mplsoccer
-matplotlib.font_manager
 json
 requests
 bs4
