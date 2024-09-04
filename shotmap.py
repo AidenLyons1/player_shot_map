@@ -84,7 +84,7 @@ class GoalMap:
         ax1.text(
             x=0.5,
             y=0.7,
-            s=f"All shots in the Premier League {self.season}-{(int(self.season) + 1) % 100}",
+            s=f"All shots in the {self.season}-{(int(self.season) + 1) % 100}",
             fontsize=14,
             fontweight="bold",
             fontproperties=font_props,
