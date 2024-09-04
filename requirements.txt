@@ -1,8 +1,6 @@
-pandas
-matplotlib
-mplsoccer
-json
-requests
-bs4
-streamlit
-os
+pandas==2.2.2
+matplotlib==3.9.2
+mplsoccer==1.4.0
+requests==2.32.0
+beautifulsoup4==4.12.2
+streamlit==1.38.0
