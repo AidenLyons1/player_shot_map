@@ -5,6 +5,8 @@ import matplotlib.font_manager as font_manager
 import json
 import requests
 from bs4 import BeautifulSoup
+import streamlit as st
+import os
 
 
 class GoalMap:
@@ -322,22 +324,33 @@ class GoalMap:
 
         ax3.set_axis_off()
 
-        if save == True:
-            fig.savefig(
-                f"img_output/{(self.player).replace(" ", "_")}_{self.season}.png",
-                facecolor=self.background_color,
-                bbox_inches="tight",
-            )
+        file_name = f"{(self.player).replace(" ", "_")}_{self.season}.png"
+        fig.savefig(
+            file_name,
+            facecolor=self.background_color,
+            bbox_inches="tight",
+        )
+        return file_name
 
 
 def main():
     # Haaland: 8260, Salah: 1250 max 13053
-    player = input("Enter the player's name: ")
-    id = getID(player)
-    season = input("Enter the season: ")
+    st.title("Player Shot Map")
+    
+    player_input = st.text_input("Enter the player's name")
+    season_input = st.text_input("Enter the season")
+    id = getID(player_input)
     url = f'https://understat.com/player/{id}'
-    map = GoalMap(url, season)
-    map.draw_map(save=True)
+    
+    if st.button("Generate Shot Map"):
+        if player_input and season_input:
+            map = GoalMap(url, season_input)
+            file = map.draw_map(save=True)
+            
+            if os.path.exists(file):
+                st.image(file)
+        else:
+            st.error("Please input both player and season to generate the shot map.")
 
 def getID(name):
     url = f'https://understat.com/main/getPlayersName/{name}'
@@ -345,8 +358,12 @@ def getID(name):
         "Accept": "*/*",
         "User-Agent": "Player Name ID",
     }
-    response = requests.request("GET", url, data="", headers=headersList)
-    response = response.json()
+    try:
+        response = requests.request("GET", url, data="", headers=headersList)
+        response = response.json()
+    except Exception as e:
+        print(f"Error {e}: Could not get player ID")
+        return None
     player = response["response"]["players"][0]
     player_id = player["id"]
     return player_id
